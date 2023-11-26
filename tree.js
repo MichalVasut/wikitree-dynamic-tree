@@ -159,22 +159,33 @@ window.ViewRegistry = class ViewRegistry {
                 .map((id) => `<option value="${id}">${this.views[id].title}</option>`)
                 .join("") + `<option value="otherapps">Other Apps</option>`;
 
+        const dlgViews =
+        Object.keys(this.views)
+            .sort(function (a, b) {
+                // Sort the app options alphabetically by title
+                return views[a].title.localeCompare(views[b].title);
+            })
+            .map((id) => `<li><button value="${id}">${this.views[id].title}</button></li>`)
+            .join("");
+
+        document.querySelector('#views').innerHTML = dlgViews
+
         const submitBtn = document.querySelector(this.SHOW_BTN);
-        submitBtn.addEventListener("click", (e) => this.onSubmit(e));
+        // submitBtn.addEventListener("click", (e) => this.onSubmit(e));
 
-        const viewSelect = document.querySelector(this.VIEW_SELECT);
-        viewSelect.innerHTML = options;
-        viewSelect.value = this.session.viewID || (Object.keys(this.views).length ? Object.keys(this.views)[0] : "");
+        // const viewSelect = document.querySelector(this.VIEW_SELECT);
+        // viewSelect.innerHTML = options;
+        // viewSelect.value = this.session.viewID || (Object.keys(this.views).length ? Object.keys(this.views)[0] : "");
 
-        document.querySelector(this.WT_ID_TEXT).value = this.session.personName;
+        // document.querySelector(this.WT_ID_TEXT).value = this.session.personName;
 
         // If we have both a starting Profile ID and a selected View ID, draw the desired view.
         // If not, alert the user that they need to do something to begin.
-        if (document.querySelector(this.WT_ID_TEXT).value && viewSelect.value) {
-            submitBtn.click();
-        } else {
-            this.showWarning('Enter a WikiTree ID and select a View, then click "Go" to begin.');
-        }
+        // if (document.querySelector(this.WT_ID_TEXT).value && viewSelect.value) {
+        //     submitBtn.click();
+        // } else {
+        //     this.showWarning('Enter a WikiTree ID and select a View, then click "Go" to begin.');
+        // }
     }
 
     // When the "Go" button is clicked, grab the provided WikiTree ID and the selected View.

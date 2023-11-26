@@ -15,9 +15,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
         WikiTreeAPI,
         (events = {
             onLoggedIn: (user) => {
-                document.querySelector(
-                    "#wt-api-login"
-                ).innerHTML = `Logged into Apps: ${user.name} (<a class="apiLogout" href="#">Logout</a>)`;
+                // document.querySelector(
+                //     "#wt-api-login"
+                // ).innerHTML = `Logged into Apps: ${user.name} (<a class="apiLogout" href="#">Logout</a>)`;
             },
             onUnlogged: () => {
                 document.querySelector("#wt-api-login").innerHTML = `
@@ -77,6 +77,18 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
     wtViewRegistry = new ViewRegistry(views, new SessionManager(WikiTreeAPI, loginManager));
     wtViewRegistry.render();
+
+    
+    // ----------
+
+    document.querySelector('#close-views-selector').addEventListener("click", () => {
+        document.querySelector('#view-selection').close()
+    });
+
+    document.querySelector('#open-views-selector').addEventListener('click', () => {
+        document.querySelector('#view-selection').showModal();
+    })
 });
 
 //// "superbig": new SuperBigFamView(),
+

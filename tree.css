@@ -7,6 +7,12 @@ body {
   font-family: sans-serif;
 }
 
+#dynamic-tree{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   background: #f7f6f0;
   height: auto;
@@ -46,8 +52,92 @@ header > * {
 }
 
 main {
+  flex: 1;
   background: white;
   padding: var(--content-padding);
+}
+
+button.icon{
+  min-width: 4rem;
+  aspect-ratio: 1;
+  display: inline-block;
+}
+
+dialog[open]{
+  margin: 0;
+  border: 0;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  min-height: 100dvh;
+  max-height: 100dvh;
+  min-width: 85dvw;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: scroll;
+  font-size: 14pt;
+  animation: ease-in-out 0.3s;
+}
+
+dialog::backdrop{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-header{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  padding: 1rem 1rem;
+  display: flex;
+  color: black;
+  font-weight: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.1)
+}
+
+.dialog-header button{
+  background: transparent;
+  padding: 1rem 1rem 1rem 0;
+  margin: 0;
+  color: inherit;
+}
+
+.dialog-header h3{
+  font-weight: normal;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.dialog-body{
+  flex: 1;
+}
+
+#views{
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#views > li{
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+#views button{
+  background-color: transparent;
+  color: black;
+  text-align: left;
+  flex: 1;
+  padding: 1.5rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+
+#view-selection{
 }
 
 #settings-panel {
@@ -84,7 +174,6 @@ main {
 #view-container {
   border: 1px solid #aaa;
   overflow: auto;
-  min-height: 1000px;
 }
 
 /* A div that can be filled by launchTree() with specific information for each view. */
